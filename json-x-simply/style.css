@@ -1,0 +1,18 @@
+body,html{background:#fff;color:#333;font-family: georgia,helvetica,arial,verdana,sans-serif;}
+h1{font-size:200%;margin:0;padding:.3em;color: #31ae9e;font-weight: bold;text-shadow:1px 3px 3px #31ae9e;}
+#bd{background:#fff;border:1em solid #fff;height: 100px;width: 500px}
+#doc{border: 10px solid #fff;-moz-box-shadow:4px 4px 10px #69c;-webkit-box-shadow:4px 4px 10px #69c;margin-top: 10px;background: #fff;width: 600px}
+#ft{position: relative;font-family: helvetica}
+a{color: #393}
+.slidesharebadge{  border: 10px solid #fff;  width: 420px;  padding: 0;  margin: 0;  background: #fff;  font-family: arial,verdana,sans-serif;  text-align: left;  border-radius: 8px;  -moz-border-radius: 8px;  -webkit-border-radius: 8px;}
+.slidesharebadge *{  list-style:none;  margin:0;  padding:0;  line-height:1.3em;}
+h2 a{color: #32B08F;font-size: 27px;font-weight: bold}
+.slidesharebadge ul{  padding-left: 0;}
+.slidesharebadge li{border-bottom: 1px dotted #35740a;padding: 4px;list-style:square}
+.slidesharebadge a{  color: #000;  text-decoration: none;  font-size: 17px}
+.slidesharebadge a:hover{text-decoration: none;}
+.slidesharebadge li:hover{background: #aaf478}
+#badge .loading {background: transparent url(ajax-loader.gif) no-repeat;width: 100px;height:30px;position: absolute;}
+#badge .loading{padding-left: 40px;}
+h1{background: url(http://www.slideshare.net/images/layout-09/header_logo.png?e2e66edf52682e73e1a13de3d96a81f877c7a0ed) no-repeat left;}
+h1 span{padding-left: 150px;}

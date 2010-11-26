@@ -1,0 +1,3 @@
+select title,link 
+from rss 
+where url="http://www.slideshare.net/rss/user/ '+ name[name.length-1] + '"

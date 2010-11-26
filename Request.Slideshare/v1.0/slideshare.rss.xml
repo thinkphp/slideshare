@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+  <meta>
+    <sampleQuery>select * from {table} where user={user}</sampleQuery>
+    <author>Adrian Statescu</author>
+    <description>Open Table Data for retrieving RSS User SlideShare</description>
+  </meta>
+  <bindings>
+    <select>
+       <inputs>
+          <key id="user" type="xs:string" paramType="variable" required="true" />
+       </inputs>
+       <execute><![CDATA[
+          var res = y.query("select * from rss where url='http://www.slideshare.net/rss/user/"+user+"'").results;
+              if(res.item[0] != undefined){
+                 var out = <ul/>; 
+                 for each(var curr in res.item) {
+                     var content = curr.title.text(); 
+                     var a = <a/>;
+                         a.@["href"] = curr.link;
+                         a.@["title"] = curr.title; 
+                         a.content = content;
+                    var li = <li/>;
+                        li.a = a; 
+                        out.li += li; 
+                 }
+                 response.object = <div class="slidesharebadge">{out}</div>;
+               } else {
+                 response.object = <error>No found items for this {user}.</error>;   
+               }
+       ]]></execute>
+    </select>
+  </bindings>
+
+</table>

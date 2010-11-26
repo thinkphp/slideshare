@@ -1,0 +1,2 @@
+use 'http://thinkphp.ro/apps/slideshare/Request.Slideshare/slideshare.table.xml' as slideshare;
+SELECT * FROM slideshare where username='thinkphp'

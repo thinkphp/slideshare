@@ -1,0 +1,1 @@
+You can view in action, man : [http://thinkphp.ro/apps/slideshare/](http://thinkphp.ro/apps/slideshare/)

@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Retrieving transcripts from SlideShare with YQL</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/base/base-min.css">
+
+  <style>
+  *{margin:0;paddin:0}
+  html,body {background: #fff;color: #333}
+  #hd {
+
+     border: 1px solid #ccc;
+     font-family: arial,tahoma,verdana,sans-serif;
+     font-size: 30px;
+     background: #393;
+     color: #fff;   
+     padding: 4px;
+     font-weight: bold; 
+  }
+
+    a{color: #393}
+
+    #ft{position: absolute;right: 0px;bottom: 0px;position: fixed;color: #393;font-size: 12px;font-family: verdana;background: #393;color:#fff;padding: 4px;} 
+
+    #fit-ft{background: #393;border:1px solid #393;bottom:0;left:0;height: 30px}
+
+  </style>
+</head>
+<body>
+
+ <div id="doc">
+
+     <div id="hd"><center>Retrieving transcrips from slideshare with YQL</center></div>
+
+                  <div style="width:425px;text-align:left;float:left" id="__ss_424060"><a style="font:14px Helvetica,Arial,Sans-serif;display:block;margin:12px 0 3px 0;text-decoration:underline;" href="http://www.slideshare.net/thinkphp/object-oriented-programming-concepts?type=pres
+entation" title="Object Oriented Programming Concepts">Object Oriented Programming Concepts</a><object style="margin:0px" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=objectorientedprogrammingconcepts1-1211550919661805-8&stripped_title=object-oriented-programming-concepts" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=objectorientedprogrammingconcepts1-1211550919661805-8&stripped_title=object-oriented-programming-concepts" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object><div style="font-size:11px;font-family:tahoma,arial;height:26px;padding-top:2px;">View more <a style="text-decoration:underline;" href="http://www.slideshare.net/">presentations</a> from <a style="text-decoration:underline;" href="http://www.slideshare.net/thinkphp">Ajax Ajax</a>.</div></div>
+
+                  <div style="width:425px;text-align:left;float:right" id="__ss_467520"><a style="font:14px Helvetica,Arial,Sans-serif;display:block;margin:12px 0 3px 0;text-decoration:underline;" href="http://www.slideshare.net/thinkphp/php-53-and-php-6-a-look-ahead?type=powerpoint" title="PHP 5.3 And PHP 6 A Look Ahead">PHP 5.3 And PHP 6 A Look Ahead</a><object style="margin:0px" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=php53andphp6alookahead12134591404835868-1213463058346392-8&stripped_title=php-53-and-php-6-a-look-ahead" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=php53andphp6alookahead12134591404835868-1213463058346392-8&stripped_title=php-53-and-php-6-a-look-ahead" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object><div style="font-size:11px;font-family:tahoma,arial;height:26px;padding-top:2px;">View more <a style="text-decoration:underline;" href="http://www.slideshare.net/">presentations</a> from <a style="text-decoration:underline;" href="http://www.slideshare.net/thinkphp">Ajax Ajax</a>.</div></div>
+
+<div style="width:425px;text-align:left" id="__ss_1026635"><a style="font:14px Helvetica,Arial,Sans-serif;display:block;margin:12px 0 3px 0;text-decoration:underline;" href="http://www.slideshare.net/cheilmann/finding-things-on-the-web-with-boss?type=presentation" title="Finding things on the web with BOSS">Finding things on the web with BOSS</a><object style="margin:0px" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=bossopenhackbangalore2009-1234581590455453-3&stripped_title=finding-things-on-the-web-with-boss" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=bossopenhackbangalore2009-1234581590455453-3&stripped_title=finding-things-on-the-web-with-boss" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object><div style="font-size:11px;font-family:tahoma,arial;height:26px;padding-top:2px;">View more <a style="text-decoration:underline;" href="http://www.slideshare.net/">presentations</a> from <a style="text-decoration:underline;" href="http://www.slideshare.net/cheilmann">Christian Heilmann</a>.</div></div>
+
+      <div id="ft">Written by Adrian Statescu. Powered by YUI and YQL</div>  
+      <center><img src="slideshare.gif"/></center> 
+      <div id="fit-ft"></div> 
+
+ </div><!--end doc-->
+
+  <script type="text/javascript">
+
+           //show me love to Module Pattern
+           slideshareTranscripts = function() {
+
+                   //private members
+                   var div = document.getElementsByTagName('div');
+
+                   var containers = {};
+
+                       for(var i=0;div[i];i++) {
+
+                                if(div[i].id.indexOf('__ss') !== -1) { 
+
+                                       var slideurl = div[i].getElementsByTagName('a')[0].href.split("?")[0];
+
+                                       containers[slideurl] = {c:div[i]};
+
+                                       get(slideurl);
+
+                                }//endif
+                       }//endfor
+         //private member
+         function get(surl) {
+
+                      var root = 'http://query.yahooapis.com/v1/public/yql?q=';
+
+                      var yql = 'select * from html where url="'+surl+'" and xpath="//ol/li"';
+
+                      var url = root + encodeURIComponent(yql) + '&format=json&diagnostics=false&callback=slideshareTranscripts.seed'; 
+
+                             var script = document.createElement('script');
+
+                                 script.setAttribute('type','text/javascript');
+
+                                 script.setAttribute('src',url); 
+
+                                 document.getElementsByTagName('head')[0].appendChild(script);  
+                    }
+
+                    function seed(o) {
+
+                        var url = decodeURIComponent(o.query.uri).split('"')[1];
+
+                        var out = document.createElement('ol');
+
+                        var lis = o.query.results.li;
+
+                            for(var i=0;j=lis.length,i<j;i++) {
+
+                                    var li = document.createElement('li');
+
+                                    var p = document.createElement('p');
+
+                                    p.appendChild(document.createTextNode(lis[i].p));
+
+                                    li.appendChild(p);
+
+                                    out.appendChild(li);
+                            }
+
+                            containers[url].c.appendChild(out); 
+                       
+        }//end function
+
+                    return {seed: seed} 
+}();//do EXE
+ 
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+#slidesharebadge{
+  border: 10px solid #fff;
+  width: 420px;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  font-family: arial,verdana,sans-serif;
+  text-align: left;
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+}
+
+#slidesharebadge *{
+  list-style:none;
+  margin:0;
+  padding:0;
+  line-height:1.3em;
+}
+
+#slidesharebadge h2 a{
+font-family: arial;
+color: #32B08F;
+font-size: 14px;
+font-weight: bold
+}
+
+#slidesharebadge #slidesharelist {
+ font-size: 12px;
+}
+
+
+#slidesharebadge #slidesharelist{
+
+  position:relative;
+  min-height:70px;
+  margin-top: 12px;
+}
+
+#slidesharebadge ul{
+  padding-left: 0;
+}
+
+
+#slidesharebadge li{
+  border-bottom: 1px dotted #636363;
+  padding-bottom: .5em;
+  margin-bottom: .5em;
+}
+
+#slidesharebadge a{
+  color: #000;
+  text-decoration: none;
+  font-size: 17px
+}
+
+#slidesharebadge a:hover
+{
+text-decoration: none;
+}
+
+#slidesharebadge .loading {background: transparent url(ajax-loader.gif) no-repeat;width: 100px;height:30px;position: absolute;}
+

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+   <title>Request.Slideshare Plugin MooTools</title>
+   <link rel="stylesheet" href="http://yui.yahooapis.com/2.8.0r4/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css">
+   <style type="text/css">
+body,html{background:#fff;color:#333;font-family: georgia,helvetica,arial,verdana,sans-serif;}
+#bd{background:#fff;border:1em solid #fff;height: 400px;width: 100%}
+a{color: #393}
+h2 a{color: #32B08F;font-size: 15px;font-weight: bold}
+.slidesharebadge{  border: 10px solid #fff;  width: 420px;  padding: 0;  margin: 0;  background: #fff;  font-family: arial,verdana,sans-serif;  text-align: left;  border-radius: 8px;  -moz-border-radius: 8px;  -webkit-border-radius: 8px;}
+.slidesharebadge *{  list-style:none;  margin:0;  padding:0;  line-height:1.3em;}
+.slidesharebadge ul{  padding-left: 0;}
+.slidesharebadge li{border-bottom: 1px dotted #35740a;padding: 4px;list-style:square}
+.slidesharebadge a{  color: #000;  text-decoration: none;  font-size: 14px}
+.slidesharebadge a:hover{text-decoration: none;}
+.slidesharebadge li:hover{background: #aaf478}
+#badge .loading {background: transparent url(ajax-loader.gif) no-repeat;width: 100px;height:30px;position: absolute;}
+#badge span {padding-left: 40px;}
+h1{font-size:200%;margin:0;padding:.3em;color:#31ae9e;font-weight: bold;text-shadow:1px 3px 3px #31ae9e;}
+h1{background: url(logo.png) no-repeat left;}
+h1 span{padding-left: 150px;color: #393}
+pre{font-size: 20px;font-weight: bold}
+#ft{position: relative;font-family: helvetica}
+   </style> 
+   <script src="http://www.google.com/jsapi?key=ABQIAAAA1XbMiDxx_BTCY2_FkPh06RRaGTYH6UMl8mADNa0YKuWNNa8VNxQEerTAUcfkyrr6OwBovxn7TDAH5Q"></script>
+   <script type="text/javascript">google.load("mootools", "1.3");</script>
+   <script src="Request.JSONP.js"></script>
+   <script type="text/javascript" src="Request.Slideshare-yui-compressed.js"></script>
+   <script type="text/javascript">
+   window.addEvent('domready',function(){
+      //variant 1
+      var c = $('badge').get('class');
+      var usernamematch = /username-(\w+)/, amountmatch = /amount-(\d+)/; 
+      var username = usernamematch.exec(c);
+          username = username ? username[1] : 'stoyan';  
+      var amount = amountmatch.exec(c);
+          amount = amount ? amount[1] : '5';  
+      new Request.Slideshare(username, amount, {
+               onSuccess: function(o) {
+                   if(o.results[0].indexOf('<error') != -1) {
+                        if(window.console){console.log(o);}
+                        var r = o.results[0]; 
+                        var clean = r.replace(/<\/?error[^>]*>/,' '); 
+                        $('badge').set('html','<h2 class="error">'+clean+'</h2>');
+
+                   } else {
+                        $('bd').setStyle('height','auto');
+                        if(window.console){console.log(o);}
+                        $('badge').set('html',o.results[0]);
+                        $('badge').fade('hide'); 
+                        $('badge').fade(1);
+                   }
+               },
+               onRequest: function(script){
+                   var span = new Element('span',{'class': 'loading'}).set('text','Loading...').inject($('badge'));
+               }  
+      }).send();
+ 
+      //variant 2
+      //you can write less; called this method
+      $('badge2').loadSlideshare('thinkphp', 10);
+   });//end domready
+   </script>
+</head>
+<body>
+<div id="doc4" class="yui-t7">
+   <div id="hd" role="banner"><h1><span>widget</span></h1></div>
+   <div id="bd" role="main">
+	<div class="yui-g">
+          <div class="yui-u first">
+             <h2><a href="http://slideshare.com/stoyan">Stoyan's Slides</a></h2>
+             <div id="badge" class="username-stoyan amount-10"></div>
+	    </div>
+           <div class="yui-u">
+             <h2><a href="http://slideshare.com/thinkphp">thinkphp's Slides</a></h2>
+             <div id="badge2"></div>
+	    </div>
+      </div>
+   </div>
+<div id="ft"><p>Created by @<a href="http://twitter.com/thinkphp">thinkphp</a> using <a href="http://thinkphp.ro/apps/YQL/slideshare.rss.xml">Open Data Table</a> | You can grab the source code of this demo on <a href="http://mootools.net/forge/download/Request_Slideshare/v1.0">Forge</a></p></div></div>
+</div>
+</body>
+</html>
+
